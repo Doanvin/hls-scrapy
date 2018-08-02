@@ -18,4 +18,4 @@ class HooklinesinkerItem(scrapy.Item):
     type = scrapy.Field()
     rating = scrapy.Field()
     report = scrapy.Field()
-    acccess = scrapy.Field()
+    access = scrapy.Field()
