@@ -12,7 +12,7 @@ class HooklinesinkerPipeline(object):
         hostname = 'localhost'
         username = '' # your username
         password = '' # your password
-        database = 'reports' # your database
+        database = '' # your database
         port = 5432
         try:
             self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database, port=port)
@@ -26,13 +26,15 @@ class HooklinesinkerPipeline(object):
 
     def process_item(self, item, spider):
         item = self.normalize_data(item)
-        self.cur.execute("insert into reports(name, site, date, date_exp, type, rating, report, access) values(%s,%s,%s,%s,%s,%d,%s,%s);",(item['name'],item['site'],item['date'],item['date_exp'],item['type'],item['rating'],item['report'],item['access']))
+        self.cur.execute("insert into reports(name, site, date, date_exp, type, rating, report, access) values(%s,%s,%s,%s,%s,%s,%s,%s);",(item['name'],item['site'],item['date'],item['date_exp'],item['type'],item['rating'],item['report'],item['access']))
         self.connection.commit()
         return item
 
     def normalize_data(self, item):
         if item['rating'] == None:
             item['rating'] = 0
+        elif len(item['rating']) > 5:
+            item['rating'] = item['rating'][0]
         if item['date_exp'] == None:
             item['date_exp'] = ''
         return item
