@@ -17,5 +17,6 @@ class HooklinesinkerItem(scrapy.Item):
     date_exp = scrapy.Field()
     type = scrapy.Field()
     rating = scrapy.Field()
+    gps = scrapy.Field()
     report = scrapy.Field()
     access = scrapy.Field()

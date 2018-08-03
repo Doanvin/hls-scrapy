@@ -10,9 +10,9 @@ import psycopg2
 class HooklinesinkerPipeline(object):
     def open_spider(self, spider):
         hostname = 'localhost'
-        username = 'don' # your username
-        password = 'Fry3dChikun' # your password
-        database = 'hooklinesinker' # your database
+        username = '' # your username
+        password = '' # your password
+        database = '' # your database
         port = 5432
         try:
             self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database, port=port)
@@ -28,7 +28,7 @@ class HooklinesinkerPipeline(object):
         item = self.normalize_data(item)
         in_db = self.checkDuplicates(item)
         if not in_db:
-            self.cur.execute("insert into reports(name, site, date, date_exp, type, rating, report, access) values(%s,%s,%s,%s,%s,%s,%s,%s);",(item['name'],item['site'],item['date'],item['date_exp'],item['type'],item['rating'],item['report'],item['access']))
+            self.cur.execute("insert into reports(name, site, date, date_exp, type, rating, gps, report, access) values(%s,%s,%s,%s,%s,%s,%s,%s,%s);",(item['name'],item['site'],item['date'],item['date_exp'],item['type'],item['rating'],item['gps'],item['report'],item['access']))
             self.connection.commit()
             return item
         elif in_db:
