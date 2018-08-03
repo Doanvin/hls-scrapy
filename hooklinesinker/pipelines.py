@@ -10,9 +10,9 @@ import psycopg2
 class HooklinesinkerPipeline(object):
     def open_spider(self, spider):
         hostname = 'localhost'
-        username = '' # your username
-        password = '' # your password
-        database = '' # your database
+        username = 'don' # your username
+        password = 'Fry3dChikun' # your password
+        database = 'hooklinesinker' # your database
         port = 5432
         try:
             self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database, port=port)
@@ -42,6 +42,12 @@ class HooklinesinkerPipeline(object):
         if item['site'] == 'Rancho Cordo...':
             item['site'] = 'Rancho Cordova'
 
+        # replace /n with space in report and access
+        if "\n" in item['report']:
+            item['report'] = item['report'].replace("\n", " ")
+        if "\n" in item['access']:
+            item['access'] = item['access'].replace("\n", " ")
+
         # change rating from None to 0 and '# stars' to '#'
         if item['rating'] == None:
             item['rating'] = 0
@@ -57,6 +63,9 @@ class HooklinesinkerPipeline(object):
 
     def checkDuplicates(self, item):
         """Check database for duplicate entries"""
+        # escape apostrophes before sql select query
+        item = self.checkApostrophes(item)
+
         self.cur.execute("select name,site,date from reports where name = '{}' and site = '{}' and date = '{}';".format(item['name'], item['site'], item['date']))
         rows = self.cur.fetchall()
 
@@ -73,3 +82,11 @@ class HooklinesinkerPipeline(object):
         else:
             print('Error in checkdb! len(rows) not > 0 and len(rows) not == 0.')
             return True
+
+    def checkApostrophes(self, item):
+        """Check for apostrophes and escape them before sql select query"""
+        if "'" in item['name']:
+            item['name'] = item['name'].replace("'", "''")
+        if "'" in item['site']:
+            item['site'] = item['site'].replace("'", "''")
+        return item

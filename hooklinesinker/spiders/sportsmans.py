@@ -8,8 +8,24 @@ class SportsmansSpider(scrapy.Spider):
     name = 'sportsmans'
     allowed_domains = ['storelocator.sportsmanswarehouse.com', 'sportsmanswarehouse.com']
     start_urls = [
-        'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=20&taskID=list&keywords=All&siteNo=233&siteStateProv=&taskQuery=Search',
-        'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=30&taskID=list&keywords=All&siteNo=149&siteStateProv=&taskQuery=Search'
+        # Rancho Cordova
+        # 'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=20&taskID=list&keywords=All&siteNo=233&siteStateProv=&taskQuery=Search',
+        # Rocklin
+        # 'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=30&taskID=list&keywords=All&siteNo=149&siteStateProv=&taskQuery=Search',
+        # Chico
+        # 'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=30&taskID=list&keywords=All&siteNo=232&siteStateProv=&taskQuery=Search',
+        # Eureka
+        'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=20&taskID=list&keywords=All&siteNo=184&siteStateProv=&taskQuery=Search'
+        # Fairfield
+        # 'https://storelocator.sportsmanswarehouse.com/fishing_report/?keywords=All&siteStateProv=&siteNo=176&taskID=list&taskQuery=Search',
+        # Fresno
+        # 'https://storelocator.sportsmanswarehouse.com/fishing_report/?keywords=All&siteStateProv=&siteNo=238&taskID=list&taskQuery=Search',
+        # Rohnert Park
+        # 'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=20&taskID=list&keywords=&siteNo=247&siteStateProv=&taskQuery=Search',
+        # Stockton
+        # 'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=20&taskID=list&keywords=&siteNo=186&siteStateProv=&taskQuery=Search',
+        # Visalia
+        # 'https://storelocator.sportsmanswarehouse.com/fishing_report/index.cfm?appID=100&taskPageID=&pageNo=1&maxRows=20&taskID=list&keywords=&siteNo=183&siteStateProv=&taskQuery=Search'
     ]
 
     def parse(self, response):
