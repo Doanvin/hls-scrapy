@@ -41,12 +41,32 @@ class HooklinesinkerPipeline(object):
         # change site
         if item['site'] == 'Rancho Cordo...':
             item['site'] = 'Rancho Cordova'
+        if item['site'] == 'Grand Juncti...':
+            item['site'] = 'Grand Junction'
+        if item['site'] == 'Colorado Spr...':
+            item['site'] = 'Colorado Springs'
+        if item['site'] == 'KLamath Fall...':
+            item['site'] = 'Klamath Falls'
+        if item['site'] == 'Spokane Vall...':
+            item['site'] = 'Spokane Valley'
+
+        # relplace None type with empty string
+        if item['report'] == None:
+            item['report'] = ''
+        if item['access'] == None:
+            item['access'] = ''
 
         # replace /n with space in report and access
         if "\n" in item['report']:
             item['report'] = item['report'].replace("\n", " ")
         if "\n" in item['access']:
             item['access'] = item['access'].replace("\n", " ")
+
+        # replace \xa0 with ''
+        if "\xa0" in item['report']:
+            item['report'] = item['report'].replace("\xa0", "")
+        if "\xa0" in item['access']:
+            item['access'] = item['access'].replace("\xa0", "")
 
         # change rating from None to 0 and '# stars' to '#'
         if item['rating'] == None:
