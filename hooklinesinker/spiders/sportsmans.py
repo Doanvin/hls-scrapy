@@ -48,6 +48,7 @@ class SportsmansSpider(scrapy.Spider):
             date_exp = sel.xpath('//tr[3]/td[3]/text()').extract_first(),
             type = sel.xpath('//tr[3]/td[4]/text()').extract_first(),
             rating = sel.xpath('//td/img/@title').extract_first(),
+            gps = sel.xpath('//tr[5]/td[2]/text()').extract_first(),
             report = sel.xpath('//tr[7]/td/p/text()').extract_first(),
             access = sel.xpath('//tr[9]/td/p/text()').extract_first(),
         )
